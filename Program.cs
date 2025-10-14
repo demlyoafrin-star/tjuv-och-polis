@@ -11,6 +11,7 @@ namespace TjuvOchPolis
             {
                 Console.WriteLine(i);
             }
+            Console.WriteLine("Jag heter Bekr");
         }
     }
 }
