@@ -21,6 +21,7 @@ namespace TjuvOchPolis
     class MedBorgare : Person // Subklass
     {
        public string plånbok { get; set; }
+
         public MedBorgare(string name, int numberOfPeople, string plånbok) : base(name, numberOfPeople)
         {
             this.plånbok = plånbok;
