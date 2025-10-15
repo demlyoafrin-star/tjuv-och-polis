@@ -9,19 +9,19 @@ namespace TjuvOchPolis
     internal class Person
     {
         public string Name { get; set; } //Basklassen
-        public int HowMany { get; set; }
+        public int NumberOfPeople { get; set; }
 
-        public Person(string name, int howMany)
+        public Person(string name, int numberOfPeople)
         {
             Name = name;
-            HowMany = howMany;
+            NumberOfPeople = numberOfPeople;
         }
 
     }
     class MedBorgare : Person // Subklass
     {
        public string plånbok { get; set; }
-        public MedBorgare(string name, int howMany, string plånbok) : base(name, howMany)
+        public MedBorgare(string name, int numberOfPeople, string plånbok) : base(name, numberOfPeople)
         {
             this.plånbok = plånbok;
         }
@@ -30,7 +30,7 @@ namespace TjuvOchPolis
     {
         public string HandBojor { get; set; }
 
-        public Polis (string name, int howMany, string handBojor) : base(name, howMany)
+        public Polis (string name, int numberOfPeople, string handBojor) : base(name, numberOfPeople)
         {
             HandBojor = handBojor;
         }
@@ -39,7 +39,7 @@ namespace TjuvOchPolis
     class Tjuv : Person // Subklass
     {
         public string Vapen { get; set; }
-        public Tjuv(string name, int howMany, string vapen) : base(name, howMany)
+        public Tjuv(string name, int numberOfPeople, string vapen) : base(name, numberOfPeople)
         {
             Vapen = vapen;
         }
