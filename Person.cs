@@ -1,53 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
-    internal class Person
+    public class Person //Base class
     {
-        public string Name { get; set; } //Basklassen
-        public int NumberOfPeople { get; set; }
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
-        public Person(string name, int numberOfPeople)
+         public List<string> Inventory { get; set; }
+
+        public Person(string name, int x, int y)
         {
             Name = name;
-            NumberOfPeople = numberOfPeople;
+            X = x;
+            Y = y;
+            Inventory = new List<string>();
+
         }
 
-    }
-    class MedBorgare : Person // Subklass
-    {
-       public string plånbok { get; set; }
-
-        public MedBorgare(string name, int numberOfPeople, string plånbok) : base(name, numberOfPeople)
+        public class Citizen : Person // subbklass för medborgare
         {
-            this.plånbok = plånbok;
-        }
-    }
-    class Polis : Person // Subklass
-    {
-        public string HandBojor { get; set; }
+            public Citizen(string name, int x, int y) : base(name, x, y)
+            {
+                
+                Inventory.Add("Keys");
+                Inventory.Add("Mobile");
+                Inventory.Add("Wallet");
+                Inventory.Add("Watch");
 
-        public Polis (string name, int numberOfPeople, string handBojor) : base(name, numberOfPeople)
+            }
+        }
+
+        public class Thief : Person // subklass för tjuv
         {
-            HandBojor = handBojor;
-        }
-    }
 
-    class Tjuv : Person // Subklass
-    {
-        public string Vapen { get; set; }
-        public Tjuv(string name, int numberOfPeople, string vapen) : base(name, numberOfPeople)
+            public Thief(string name, int x, int y) : base(name, x, y)
+            {
+                Inventory.Add("Knife");
+
+            }
+        }
+
+        public class Police : Person // subklass för polis
         {
-            Vapen = vapen;
+            public Police(string name, int x, int y) : base(name, x, y)
+            {
+                Inventory.Add("Handcuffs");
+                Inventory.Add("Weapon");
+            }
         }
+
+
+
     }
-
-
-
 }
 
 
