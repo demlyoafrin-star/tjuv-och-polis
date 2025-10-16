@@ -13,7 +13,7 @@ namespace TjuvOchPolis
         public int X { get; set; }
         public int Y { get; set; }
 
-         public List<string> Inventory { get; set; }
+        public List<string> Inventory { get; set; }
 
         public Person(string name, int x, int y)
         {
@@ -23,43 +23,43 @@ namespace TjuvOchPolis
             Inventory = new List<string>();
 
         }
-
-        public class Citizen : Person // subbklass för medborgare
-        {
-            public Citizen(string name, int x, int y) : base(name, x, y)
-            {
-                
-                Inventory.Add("Keys");
-                Inventory.Add("Mobile");
-                Inventory.Add("Wallet");
-                Inventory.Add("Watch");
-
-            }
-        }
-
-        public class Thief : Person // subklass för tjuv
+    }
+    public class Citizen : Person // subklass för medborgare
+    {
+        public Citizen(string name, int x, int y) : base(name, x, y)
         {
 
-            public Thief(string name, int x, int y) : base(name, x, y)
-            {
-                Inventory.Add("Knife");
+            Inventory.Add("Keys");
+            Inventory.Add("Mobile");
+            Inventory.Add("Wallet");
+            Inventory.Add("Watch");
 
-            }
         }
+    }
 
-        public class Police : Person // subklass för polis
+    public class Thief : Person // subklass för tjuv
+    {
+
+        public Thief(string name, int x, int y) : base(name, x, y)
         {
-            public Police(string name, int x, int y) : base(name, x, y)
-            {
-                Inventory.Add("Handcuffs");
-                Inventory.Add("Weapon");
-            }
+            Inventory.Add("Knife");
+
         }
+    }
 
-
-
+    public class Police : Person // subklass för polis
+    {
+        public Police(string name, int x, int y) : base(name, x, y)
+        {
+            Inventory.Add("Handcuffs");
+            Inventory.Add("Weapon");
+        }
     }
 }
+
+
+    
+
 
 
 

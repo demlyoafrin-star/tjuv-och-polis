@@ -29,7 +29,7 @@ namespace TjuvOchPolis
             Console.Write(" prison");
             Console.SetCursorPosition(3, 0);
             Console.Write("City");
-           
+
         }
     }
 }
