@@ -1,53 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
-    internal class Person
+    public class Person //Base class
     {
-        public string Name { get; set; } //Basklassen
-        public int NumberOfPeople { get; set; }
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
-        public Person(string name, int numberOfPeople)
+        public List<string> Inventory { get; set; }
+
+        public Person(string name, int x, int y)
         {
             Name = name;
-            NumberOfPeople = numberOfPeople;
-        }
+            X = x;
+            Y = y;
+            Inventory = new List<string>();
 
+        }
     }
-    class MedBorgare : Person // Subklass
+    public class Citizen : Person // subklass för medborgare
     {
-       public string plånbok { get; set; }
-        public MedBorgare(string name, int numberOfPeople, string plånbok) : base(name, numberOfPeople)
+        public Citizen(string name, int x, int y) : base(name, x, y)
         {
-            this.plånbok = plånbok;
+
+            Inventory.Add("Keys");
+            Inventory.Add("Mobile");
+            Inventory.Add("Wallet");
+            Inventory.Add("Watch");
+
         }
     }
-    class Polis : Person // Subklass
+
+    public class Thief : Person // subklass för tjuv
     {
-        public string HandBojor { get; set; }
 
-        public Polis (string name, int numberOfPeople, string handBojor) : base(name, numberOfPeople)
+        public Thief(string name, int x, int y) : base(name, x, y)
         {
-            HandBojor = handBojor;
+            Inventory.Add("Knife");
+
         }
     }
 
-    class Tjuv : Person // Subklass
+    public class Police : Person // subklass för polis
     {
-        public string Vapen { get; set; }
-        public Tjuv(string name, int numberOfPeople, string vapen) : base(name, numberOfPeople)
+        public Police(string name, int x, int y) : base(name, x, y)
         {
-            Vapen = vapen;
+            Inventory.Add("Handcuffs");
+            Inventory.Add("Weapon");
         }
     }
-
-
-
 }
+
+
+    
+
 
 
 
