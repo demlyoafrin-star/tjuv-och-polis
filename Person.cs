@@ -19,8 +19,8 @@ namespace TjuvOchPolis
         {
             Name = name;
             ManyOfPeople = manyOfPeople;
-            X = x = Random.Shared.Next(1, 99);
-            Y = y = Random.Shared.Next(1, 23);
+            X = x;
+            Y = y;
             Inventory = new List<string>();
             
          }
@@ -30,11 +30,11 @@ namespace TjuvOchPolis
 
         public Citizen(string name,int manyOfPeople, int x, int y) : base(name,manyOfPeople, x, y)
         {
-            
             Inventory.Add("Keys");
             Inventory.Add("Mobile");
             Inventory.Add("Wallet");
             Inventory.Add("Watch");
+            
         }
     }
 
@@ -43,7 +43,7 @@ namespace TjuvOchPolis
         public Thief(string name,int manyOfPeople, int x, int y) : base(name, manyOfPeople, x, y)
         {
             Inventory.Add("Knife");
-
+            
         }
     }
 
@@ -53,6 +53,7 @@ namespace TjuvOchPolis
         {
             Inventory.Add("Handcuffs");
             Inventory.Add("Weapon");
+            
         }
     }
 }
