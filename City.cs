@@ -48,18 +48,20 @@ namespace TjuvOchPolis
                 Console.SetCursorPosition(15, prisonWidth + i);
                 Console.Write("X");
             }
-
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.SetCursorPosition(0, 24);
             Console.Write("# prison");
             Console.SetCursorPosition(0, 0);
-            Console.Write("# City==");
+            Console.Write("# City");
 
             Console.SetCursorPosition(0, 35);
             Console.Write("# Status");
 
             Console.SetCursorPosition(0, 40);
             Console.Write("# News Feed");
-
+            Console.ResetColor();
+            Console.SetCursorPosition(6, 0);
+            Console.Write("==");
         }
     }
 }
