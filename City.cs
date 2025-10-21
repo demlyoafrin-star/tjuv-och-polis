@@ -11,16 +11,12 @@ namespace TjuvOchPolis
     {
         public static void DrawCity()
         {
-            int width = 101;
-            int height = 24;
-            int prisonWidth = 25;
-            int prisonHeight = 10;
-
-            for (int i = 8; i < width; i++)
+            
+            for (int i = 8; i < 101; i++)
             {
-                Console.SetCursorPosition(i, 0);
+                Console.SetCursorPosition(i, 0); //det är för City
                 Console.Write("=");
-                Console.SetCursorPosition(i, 24);
+                Console.SetCursorPosition(i, 24); // Det är för City
                 Console.Write("=");
 
                 Console.SetCursorPosition(i, 35); // Det är för statusfältet
@@ -31,21 +27,21 @@ namespace TjuvOchPolis
             }
 
 
-            for (int i = 1; i < height; i++)
+            for (int i = 1; i < 24; i++)
             {
-                Console.SetCursorPosition(0, i);
+                Console.SetCursorPosition(0, i); //det är för City
                 Console.Write("X");
-                Console.SetCursorPosition(100, i);
+                Console.SetCursorPosition(100, i); // Det är för City
                 Console.Write("X");
             }
             
 
 
-            for (int i = 0; i < prisonHeight; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Console.SetCursorPosition(0, prisonWidth + i);
+                Console.SetCursorPosition(0, 25 + i); // Det är för prison
                 Console.Write("X");
-                Console.SetCursorPosition(15, prisonWidth + i);
+                Console.SetCursorPosition(15, 25 + i); // Det är för prison
                 Console.Write("X");
             }
             Console.ForegroundColor = ConsoleColor.Cyan;

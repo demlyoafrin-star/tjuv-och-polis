@@ -48,10 +48,11 @@ namespace TjuvOchPolis
 
     public class Thief : Person // subklass för tjuv
     {
-        public Thief(string name, int x, int y) : base(name, x, y)
+        public bool IsCaught { get; set; }
+        public Thief(string name, int x, int y, bool isCaught) : base(name, x, y)
         {
             Inventory.Add("Knife");
-            
+            IsCaught = isCaught;
         }
     }
 
