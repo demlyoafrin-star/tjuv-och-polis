@@ -1,7 +1,8 @@
 ﻿using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
-using System.Threading;//Detta behövs för Thread.Sleep
+using System.Threading;
+using System.Net.NetworkInformation;//Detta behövs för Thread.Sleep
 
 namespace TjuvOchPolis
 {
@@ -21,7 +22,7 @@ namespace TjuvOchPolis
 
                 people.Add(new Police("P", Random.Shared.Next(2, 99), Random.Shared.Next(2, 23)));
 
-            for (int i = 0; i < 40; i++) // skapar antal tjubar
+            for (int i = 0; i < 20; i++) // skapar antal tjubar
 
                 people.Add(new Thief("T", Random.Shared.Next(2, 99), Random.Shared.Next(2, 23), false));
 
@@ -41,7 +42,20 @@ namespace TjuvOchPolis
 
                     if (person is Thief caughtThief && caughtThief.IsCaught)
                     {
-                        if (person.X <= 1 || person.X >= 14)
+                        if (DateTime.Now >= caughtThief.ReleaseTime)
+                        {
+                            // Släpp tjuven tillbaka i staden
+                            caughtThief.IsCaught = false;
+                            caughtThief.X = Random.Shared.Next(2, 99); //stadens gränser
+                            caughtThief.Y = Random.Shared.Next(2, 23); //stadens gränser
+                            Console.SetCursorPosition(0, 42);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write($"Tjuven är nu frigiven och återvänder till staden den {DateTime.Now.TimeOfDay}      ");
+                            Console.ResetColor();
+                            Console.Beep(700, 200);
+                        }
+
+                        if (person.X <= 1 || person.X >= 14) 
                         {
                             person.Xdirection *= -1;
                         }
@@ -50,8 +64,7 @@ namespace TjuvOchPolis
                             person.Ydirection *= -1;
                         }
                     }
-                    
-                    else 
+                    else
                     {
                         // Vanlig rörelse i staden
                         if (person.X <= 1 || person.X >= 99)
@@ -76,7 +89,7 @@ namespace TjuvOchPolis
                         Citizen => ConsoleColor.Green,
                         _ => ConsoleColor.White
                     };
-                    Console.Write(person.Name); // Rita personen på den nya positionen
+                    Console.Write(person.Name); // Ritar personen på den nya positionen
 
 
                     foreach (var other in people)
@@ -85,26 +98,31 @@ namespace TjuvOchPolis
                             person is Police &&
                             person.X == other.X && person.Y == other.Y)
                         {
+                            // Tjuven blir gripen
                             thief.IsCaught = true;
+                            thief.ReleaseTime = DateTime.Now.AddSeconds(10); // Tjuven släpps efter 40 sekunder
+                            thief.X = Random.Shared.Next(2, 14); //fängelse gränser    //ändrade 1 till 2 för att inte skriva över vägg
+                            thief.Y = Random.Shared.Next(26, 34); //fängelse gränser   //ändrade 25 till 26 för att inte skriva över vägg
+                            Console.Beep(500, 600);
+
+
+
+
                             Console.SetCursorPosition(0, 41);
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write($"A thief has been caught at ({thief.X}, {thief.Y})!          ");
+                            Console.Write($"En tjuv har blivit gripen och sitter i fängelse tills {thief.ReleaseTime:T}");
                             Console.ResetColor();
 
-                            if (thief.IsCaught)
-                            {
-                                Console.SetCursorPosition(thief.X = Random.Shared.Next(1,14), thief.Y = Random.Shared.Next(25, 34));
+                           
 
-                            }
+
+
                         }
                     }
 
 
-
                 }
-
-
-                Thread.Sleep(50);
+                Thread.Sleep(200);
                 //break; // ta bort denna rad för att låta loopen fortsätta
 
             }

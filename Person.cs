@@ -49,6 +49,7 @@ namespace TjuvOchPolis
     public class Thief : Person // subklass för tjuv
     {
         public bool IsCaught { get; set; }
+        public DateTime ReleaseTime { get; set; } //den raden gör att efter en tid gåt tjuven tillbaka till staden
         public Thief(string name, int x, int y, bool isCaught) : base(name, x, y)
         {
             Inventory.Add("Knife");
