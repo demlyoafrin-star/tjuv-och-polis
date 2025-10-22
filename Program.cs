@@ -2,6 +2,7 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 using System.Threading;
+using TjuvOchPolis.TjuvOchPolis;
 
 namespace TjuvOchPolis
 {
@@ -13,6 +14,7 @@ namespace TjuvOchPolis
             City.DrawCity();
             List<Person> people = new List<Person>();
             List<string> newsFeed = new List<string>();
+            List<Thief> Inmates = new List<Thief>();
 
 
 
@@ -78,7 +80,7 @@ namespace TjuvOchPolis
                             {
                                 if (a is Citizen citizen && b is Thief thief && c is Police police)
                                 {
-                                    Interaction.CheckInteration(citizen, thief, police, newsFeed);
+                                    InteractionHandler.CheckInteraction(citizen, thief, police, newsFeed, Inmates);
                                 }
                             }
                         }
