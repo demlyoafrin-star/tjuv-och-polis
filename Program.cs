@@ -9,7 +9,8 @@ namespace TjuvOchPolis
     {
         static void Main(string[] args)
         {
-            Console.CursorVisible = false;
+            ConsoleKeyInfo key = new ConsoleKeyInfo();
+             Console.CursorVisible = false;
             City.DrawCity();
             List<Person> people = new List<Person>();
 
