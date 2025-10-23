@@ -34,6 +34,8 @@ namespace TjuvOchPolis
             while (true)
             {
                 InteractionManager.HandleInteractions(people);
+
+
             }
 
             Console.ReadKey();
