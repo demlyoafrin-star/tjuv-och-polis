@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace TjuvOchPolis
 {
@@ -199,9 +200,12 @@ namespace TjuvOchPolis
             int policeCount = people.Count(p => p is Police);
             int citizenCount = people.Count(p => p is Citizen);
 
-            Console.SetCursorPosition(0, 36); // välj rad i konsolen där status ska stå
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write($"Poliser: {policeCount}\nMedborgare: {citizenCount}\nTjuvar: {totalThieves} (Gripna: {caughtThieves}, Fria: {freeThieves})   ");
+            Console.SetCursorPosition(0, 36); // välj rad i konsolen där status ska stå
+            Console.WriteLine($"av {policeCount} poliser, är det nu {policeCount} kvar");
+            Console.WriteLine($"Av {citizenCount} medporgare, är det nu {citizenCount} kvar");
+            Console.WriteLine($"Av {totalThieves} tjuvar, är det nu {freeThieves} kvar och {caughtThieves} är i fängelse");
+
             Console.ResetColor();
         }
 
