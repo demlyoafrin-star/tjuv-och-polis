@@ -10,10 +10,17 @@ namespace TjuvOchPolis
     {
         static void Main(string[] args)
         {
+            Console.SetWindowSize(120, 50);
+            Console.SetBufferSize(120, 50);
 
-           // ConsoleKeyInfo key = new ConsoleKeyInfo();
+
+
+
+
+
             Console.CursorVisible = false;
             City.DrawCity();
+            
 
             List<Person> people = new List<Person>();
 

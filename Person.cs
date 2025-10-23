@@ -38,11 +38,11 @@ namespace TjuvOchPolis
 
         public Citizen(string name, int x, int y) : base(name, x, y)
         {
-            Inventory.Add("Keys");
-            Inventory.Add("Mobile");
-            Inventory.Add("Wallet");
-            Inventory.Add("Watch");
-            
+            Inventory.Add("Nycklar");
+            Inventory.Add("Mobilen");
+            Inventory.Add("plonbok");
+            Inventory.Add("Klocka");
+
         }
     }
 
