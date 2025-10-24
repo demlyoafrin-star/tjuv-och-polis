@@ -33,9 +33,9 @@ namespace TjuvOchPolis
             Xdirection = Random.Shared.Next(-1, 2); // -1, 0, or 1
             Ydirection = Random.Shared.Next(-1, 2); // -1, 0, or 1
 
-            if (Xdirection == 0 && Ydirection == 0) // Ensure the person moves
+            if (Xdirection == 0 && Ydirection == 0) // personen hela tiden rör sig
             {
-                Xdirection = 1; // Default to moving right if both are 0
+                Xdirection = 1; // Standard är att röra sig åt höger om båda är 0.
             }
 
         }

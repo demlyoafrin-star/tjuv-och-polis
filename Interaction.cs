@@ -10,9 +10,9 @@ namespace TjuvOchPolis
     {
         public static class InteractionHandler
         {
-            public static void CheckInteraction(Citizen citizen, Thief thief, Police police, List<string> newsFeed, List<Thief> Inmates)
+            public static void CheckInteraction(Citizen citizen, Thief thief, Police police, List<string> newsFeed, List<Thief> Prison)
             {
-                if (thief.X == citizen.X && thief.Y == citizen.Y && !Inmates.Contains(thief))
+                if (thief.X == citizen.X && thief.Y == citizen.Y && !Prison.Contains(thief))
                 {
                     if (citizen.Inventory.Count > 0)
                     {
@@ -27,7 +27,7 @@ namespace TjuvOchPolis
                     }
                 }
 
-                if (police.X == thief.X && police.Y == thief.Y && !Inmates.Contains(thief))
+                if (police.X == thief.X && police.Y == thief.Y && !Prison.Contains(thief))
                 {
                     police.Inventory.AddRange(thief.Inventory);
                     thief.Inventory.Clear();
@@ -38,7 +38,7 @@ namespace TjuvOchPolis
                     thief.X = prisonX;
                     thief.Y = prisonY;
 
-                    Inmates.Add(thief);
+                    Prison.Add(thief);
                     newsFeed.Add($"Polis {police.FullName} griper tjuv {thief.FullName} efter rån mot {citizen.FullName}.");
                     newsFeed.Add($"{police.FullName} fångar {thief.FullName} efter rån mot {citizen.FullName}.");
                     newsFeed.Add($"Efter rånet mot {citizen.FullName} griper {police.FullName} {thief.FullName}.");
@@ -53,6 +53,32 @@ namespace TjuvOchPolis
 
                 if (newsFeed.Count > 4)
                     newsFeed.RemoveAt(0);
+            }
+
+
+            public static void PeopleStatus(List<Person> people, List<Thief> Prison)
+            {
+                int y = 36;
+
+                Console.SetCursorPosition(0, y++);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Antal poliser: " + CountType<Police>(people));
+
+                Console.SetCursorPosition(0, y++);
+                Console.WriteLine("Antal medborgare: " + CountType<Citizen>(people));
+
+                Console.SetCursorPosition(0, y++);
+                Console.WriteLine("Antal tjuvar: " + CountType<Thief>(people));
+
+                Console.SetCursorPosition(0, y++);
+                Console.WriteLine("Antal fängslade tjuvar: " + Prison.Count);
+
+                Console.ResetColor();
+            }
+
+            static int CountType<RoleType>(List<Person> people) where RoleType : Person
+            {
+                return people.Count(p => p is RoleType);
             }
         }
     }
