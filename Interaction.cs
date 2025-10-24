@@ -22,7 +22,8 @@ namespace TjuvOchPolis
                         citizen.Inventory.RemoveAt(index);
                         thief.Inventory.Add(item);
 
-                        newsFeed.Add($"Tjuv rånar medborgare på {item}!");
+                        newsFeed.Add($"Tjuv {thief.FullName} rånar medborgare {citizen.FullName} på {item}!");
+                        newsFeed.Add($"Medborgare {citizen.FullName} blir bestulen av {thief.FullName}!");
                     }
                 }
 
@@ -38,12 +39,16 @@ namespace TjuvOchPolis
                     thief.Y = prisonY;
 
                     Inmates.Add(thief);
-                    newsFeed.Add("Polis tar tjuv! Tjuven skickas till fängelset.");
+                    newsFeed.Add($"Polis {police.FullName} griper tjuv {thief.FullName} efter rån mot {citizen.FullName}.");
+                    newsFeed.Add($"{police.FullName} fångar {thief.FullName} efter rån mot {citizen.FullName}.");
+                    newsFeed.Add($"Efter rånet mot {citizen.FullName} griper {police.FullName} {thief.FullName}.");
                 }
 
                 if (police.X == citizen.X && police.Y == citizen.Y)
                 {
-                    newsFeed.Add("Polis hälsar på medborgare!");
+                    newsFeed.Add($"Polis {police.FullName} hälsar på medborgare {citizen.FullName}.");
+                    newsFeed.Add($"Polis {police.FullName} vinkar till {citizen.FullName}.");
+                    newsFeed.Add($"{police.FullName} nickar vänligt mot {citizen.FullName}.");
                 }
 
                 if (newsFeed.Count > 4)

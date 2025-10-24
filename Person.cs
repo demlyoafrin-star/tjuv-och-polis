@@ -9,16 +9,23 @@ namespace TjuvOchPolis
 {
     public class Person //Base class
     {
-        public string Name { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string FullName => $"{FirstName} {LastName}"; // Fullständigt namn
+        public virtual string Symbol => "?";            // Bokstav som visas i staden
+
+
         public int X { get; set; }
         public int Y { get; set; }
         public List<string> Inventory { get; set; }
         public int Xdirection { get; set; }
         public int Ydirection { get; set; }
 
-        public Person(string name, int x, int y)
+        public Person(string firstName, string lastName, int x, int y)
         {
-            Name = name;
+            FirstName = firstName;
+            LastName = lastName;
             X = x;
             Y = y;
             Inventory = new List<string>();
@@ -35,8 +42,8 @@ namespace TjuvOchPolis
     }
     public class Citizen : Person // subklass för medborgare
     {
-
-        public Citizen(string name, int x, int y) : base(name, x, y)
+        public override string Symbol => "M"; // Medborgare visas som M
+        public Citizen(string firstName, string lastName, int x, int y) : base(firstName, lastName, x, y)
         {
             Inventory.Add("Keys");
             Inventory.Add("Mobile");
@@ -48,7 +55,8 @@ namespace TjuvOchPolis
 
     public class Thief : Person // subklass för tjuv
     {
-        public Thief(string name, int x, int y) : base(name, x, y)
+        public override string Symbol => "T"; // Tjuv visas som T
+        public Thief(string firstName, string lastName, int x, int y) : base(firstName, lastName, x, y)
         {
             Inventory.Add("Knife");
 
@@ -57,7 +65,8 @@ namespace TjuvOchPolis
 
     public class Police : Person // subklass för polis
     {
-        public Police(string name, int x, int y) : base(name, x, y)
+        public override string Symbol => "P"; // Polis visas som P
+        public Police(string firstName, string lastName, int x, int y) : base(firstName, lastName, x, y)
         {
             Inventory.Add("Handcuffs");
             Inventory.Add("Weapon");

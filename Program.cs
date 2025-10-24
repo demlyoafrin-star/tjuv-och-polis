@@ -6,8 +6,12 @@ using TjuvOchPolis.TjuvOchPolis;
 
 namespace TjuvOchPolis
 {
-    internal class Program
+    public class Program
     {
+        static List<(string First, string Last)> Names = new() {  ("Bakr", "Svensson"), ("Erik", "Johansson"), ("Sara", "Lindberg"),
+                                                                           ("Omar", "Ali"), ("Lisa", "Karlsson"), ("Jonas", "Berg"), ("Nora", "Ahmed"),
+                                                                           ("Leo", "Nilsson"), ("Ella", "Persson"), ("Hussein", "Mumin") };
+
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
@@ -20,41 +24,65 @@ namespace TjuvOchPolis
 
 
             for (int i = 0; i < 10; i++) // skapar poliser
-
-                people.Add(new Police("P", Random.Shared.Next(2, 99), Random.Shared.Next(2, 23)));
+            {
+                (string First, string Last) name = Names[(i + 10) % Names.Count];
+                people.Add(new Police(name.First, name.Last, Random.Shared.Next(2, 99), Random.Shared.Next(2, 23)));
+            }
 
             for (int i = 0; i < 20; i++) // skapar tjubar
-
-                people.Add(new Thief("T", Random.Shared.Next(2, 99), Random.Shared.Next(2, 23)));
+            {
+               
+                (string First, string Last) name = Names[(i + 20) % Names.Count];
+                people.Add(new Thief(name.First, name.Last, Random.Shared.Next(2, 99), Random.Shared.Next(2, 23)));
+            }
 
             for (int i = 0; i < 30; i++) // skapar medborgare
-
-                people.Add(new Citizen("M", Random.Shared.Next(2, 99), Random.Shared.Next(2, 23)));
-
+            {
+               
+                (string First, string Last) name = Names[(i + 30) % Names.Count];
+                people.Add(new Citizen(name.First, name.Last, Random.Shared.Next(2, 99), Random.Shared.Next(2, 23)));
+            }
 
 
 
             while (true)
             {
-
                 foreach (Person person in people)
                 {
                     Console.SetCursorPosition(person.X, person.Y);
-                    Console.Write(" "); // Radera personens nuvarande position
+                    Console.Write(" ");
 
-
-
-                    if (person.X <= 1 || person.X >= 98)
+                    if (person is Thief thief && Inmates.Contains(thief))
                     {
-                        person.Xdirection *= -1; // Vänd riktning horisontellt
-                    }
-                    if (person.Y <= 1 || person.Y >= 23)
-                    {
-                        person.Ydirection *= -1; // Vänd riktning vertikalt
-                    }
+                        // Fängslad tjuv rör sig inom fängelset
+                        if (thief.X <= 2 || thief.X >= 13)
+                            thief.Xdirection *= -1;
 
-                    person.X += person.Xdirection;
-                    person.Y += person.Ydirection;
+                        if (thief.Y <= 26 || thief.Y >= 33)
+                            thief.Ydirection *= -1;
+
+                        thief.X += thief.Xdirection;
+                        thief.Y += thief.Ydirection;
+
+                        if (thief.X < 1) thief.X = 1;
+                        if (thief.X > 15) thief.X = 15;
+                        if (thief.Y < 25) thief.Y = 25;
+                        if (thief.Y > 34) thief.Y = 34;
+
+
+                    }
+                    else
+                    {
+                        // Vanlig rörelse i staden
+                        person.X += person.Xdirection;
+                        person.Y += person.Ydirection;
+
+                        if (person.X <= 1) person.X = 98;
+                        else if (person.X >= 98) person.X = 1;
+
+                        if (person.Y <= 1) person.Y = 23;
+                        else if (person.Y >= 23) person.Y = 1;
+                    }
 
                     Console.SetCursorPosition(person.X, person.Y);
                     Console.ForegroundColor = person switch
@@ -63,26 +91,18 @@ namespace TjuvOchPolis
                         Thief => ConsoleColor.Red,
                         Citizen => ConsoleColor.Green,
                         _ => ConsoleColor.White
-
-
                     };
 
-                    Console.Write(person.Name); // Rita personen på den nya positionen
+                    Console.Write(person.Symbol);
                 }
 
-                foreach (Person a in people)
+                foreach (Citizen citizen in people.OfType<Citizen>())
                 {
-                    foreach (Person b in people)
+                    foreach (Thief thief in people.OfType<Thief>())
                     {
-                        foreach (Person c in people)
+                        foreach (Police police in people.OfType<Police>())
                         {
-                            if (a != b && b != c && a != c)
-                            {
-                                if (a is Citizen citizen && b is Thief thief && c is Police police)
-                                {
-                                    InteractionHandler.CheckInteraction(citizen, thief, police, newsFeed, Inmates);
-                                }
-                            }
+                            InteractionHandler.CheckInteraction(citizen, thief, police, newsFeed, Inmates);
                         }
                     }
                 }
@@ -90,19 +110,39 @@ namespace TjuvOchPolis
                 for (int i = 0; i < newsFeed.Count; i++)
                 {
                     Console.SetCursorPosition(0, 41 + i);
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine(newsFeed[i].PadRight(100));
                 }
 
+                PeopleStatus(people, Inmates);
 
-
-                Thread.Sleep(1000);
-                //break; // ta bort denna rad för att låta loopen fortsätta
+                Thread.Sleep(100); // Snabbare uppdatering, ingen paus
             }
-            Console.ReadKey();
         }
-        
-       
-    }
 
+        static void PeopleStatus(List<Person> people, List<Thief> inmates)
+        {
+            int y = 36;
+
+            Console.SetCursorPosition(0, y++);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Antal poliser: " + CountType<Police>(people));
+
+            Console.SetCursorPosition(0, y++);
+            Console.WriteLine("Antal medborgare: " + CountType<Citizen>(people));
+
+            Console.SetCursorPosition(0, y++);
+            Console.WriteLine("Antal tjuvar: " + CountType<Thief>(people));
+
+            Console.SetCursorPosition(0, y++);
+            Console.WriteLine("Antal fängslade tjuvar: " + inmates.Count);
+
+            Console.ResetColor();
+        }
+
+        static int CountType<T>(List<Person> people) where T : Person
+        {
+            return people.Count(p => p is T);
+        }
+    }
 }
