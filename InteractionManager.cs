@@ -201,7 +201,7 @@ namespace TjuvOchPolis
             int citizenCount = people.Count(p => p is Citizen);
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(0, 36); // välj rad i konsolen där status ska stå
+            Console.SetCursorPosition(0, 36);
             Console.WriteLine($"av {policeCount} poliser, är det nu {policeCount} kvar");
             Console.WriteLine($"Av {citizenCount} medporgare, är det nu {citizenCount} kvar");
             Console.WriteLine($"Av {totalThieves} tjuvar, är det nu {freeThieves} kvar och {caughtThieves} är i fängelse");
