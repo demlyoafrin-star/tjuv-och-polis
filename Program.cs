@@ -10,10 +10,7 @@ namespace TjuvOchPolis
     {
         static void Main(string[] args)
         {
-            Console.SetWindowSize(120, 50);
-            Console.SetBufferSize(120, 50);
-
-
+         
 
 
 
