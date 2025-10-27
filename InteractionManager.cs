@@ -137,7 +137,7 @@ namespace TjuvOchPolis
             thief.Y = Random.Shared.Next(26, 34); //fängelse gränser   //ändrade 25 till 26 för att inte skriva över vägg
 
 
-            Console.Beep(500, 600);
+           // Console.Beep(500, 600);
             Console.SetCursorPosition(0, 41);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"En tjuv har blivit gripen och sitter i fängelse tills {thief.ReleaseTime:T}");
