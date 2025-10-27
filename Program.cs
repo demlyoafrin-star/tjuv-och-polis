@@ -18,6 +18,8 @@ namespace TjuvOchPolis
 
 
 
+
+
             Console.CursorVisible = false;
             City.DrawCity();
             
@@ -41,7 +43,6 @@ namespace TjuvOchPolis
             while (true)
             {
                 InteractionManager.HandleInteractions(people);
-
 
             }
 
