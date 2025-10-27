@@ -21,8 +21,8 @@ namespace TjuvOchPolis
 
                 if (person is Thief caughtThief && caughtThief.IsCaught)
                 {
-                    HandleThiefRelease(caughtThief);
-                    MoveInPrison(caughtThief);
+                    Tjuv.HandleThiefRelease(caughtThief);
+                    Tjuv.MoveInPrison(caughtThief);
                 }
                 else
                 {
@@ -40,7 +40,7 @@ namespace TjuvOchPolis
                         person.X == other.X && person.Y == other.Y)
                     {
                         // Tjuven blir gripen
-                        CatchThief(thief);
+                        Tjuv.CatchThief(thief);
                     }
                 }
 
@@ -53,11 +53,23 @@ namespace TjuvOchPolis
                         other.X == person.X && other.Y == person.Y)
                     {
                         // Tjuven stjäl från medborgaren        
-                        RobsCitizen(thief2, (Citizen)person);
+                        Tjuv.RobsCitizen(thief2, (Citizen)person);
 
 
                     }
                 }
+
+                foreach (var other in people)
+                {
+                    if (other is Police police && person is Citizen &&
+                        other.X == person.X && other.Y == person.Y)
+                    {
+                        PoliceMeetCitizen();
+                    }
+
+                }
+
+
 
 
             }
@@ -81,36 +93,6 @@ namespace TjuvOchPolis
             person.X += person.Xdirection;
             person.Y += person.Ydirection;
         }
-        
-
-        private static void MoveInPrison(Person person)
-        {
-            if (person.X <= 1 || person.X >= 14)
-            {
-                person.Xdirection *= -1;
-            }
-            if (person.Y <= 25 || person.Y >= 34)
-            {
-                person.Ydirection *= -1;
-            }
-            person.X += person.Xdirection;
-            person.Y += person.Ydirection;
-        }
-
-        private static void MoveInPoliceStation (Person person)
-        {
-            if (person.X <= 17 || person.X >= 28)
-            {
-                person.Xdirection *= -1;
-            }
-            if (person.Y <= 29 || person.Y >= 32)
-            {
-                person.Ydirection *= -1;
-            }
-            person.X += person.Xdirection;
-            person.Y += person.Ydirection;
-        }
-
         
 
 
@@ -137,7 +119,7 @@ namespace TjuvOchPolis
             thief.Y = Random.Shared.Next(26, 34); //fängelse gränser   //ändrade 25 till 26 för att inte skriva över vägg
 
 
-           // Console.Beep(500, 600);
+            Console.Beep(500, 600);
             Console.SetCursorPosition(0, 41);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write($"En tjuv har blivit gripen och sitter i fängelse tills {thief.ReleaseTime:T}");
@@ -176,21 +158,11 @@ namespace TjuvOchPolis
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Tjuven stal {stolenItem} från medborgaren!");
                 Console.ResetColor();
-                
+
 
             }
-            //else if (citizen.Inventory.Count == 0)
-            //{
-            //    citizen.X = 25;
-            //    citizen.Y = 30;
-            //    citizen.Xdirection = 1;
-            //    citizen.Ydirection = 1;
-            //    MoveInPoliceStation(citizen);
-
-            //}
-
-
         }
+
 
         private static void StatusUpdate(List<Person> people)
         {
@@ -209,6 +181,10 @@ namespace TjuvOchPolis
             Console.ResetColor();
         }
 
-
+        public static void PoliceMeetCitizen()
+        {
+            Console.SetCursorPosition(0, 42);
+            Console.WriteLine("Polisen hälsar på medborgare");
+        }
     }
 }
