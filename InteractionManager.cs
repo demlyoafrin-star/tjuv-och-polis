@@ -9,8 +9,12 @@ namespace TjuvOchPolis
 {
     internal static class InteractionManager
     {
+
         public static void HandleInteractions(List<Person> people)
         {
+            List<string> newsFeed = new List<string>();
+
+
 
             foreach (var person in people)
             {
@@ -41,9 +45,9 @@ namespace TjuvOchPolis
                     {
                         // Tjuven blir gripen
                         Tjuv.CatchThief(thief);
+                        newsFeed.Add($"Polisen {person.FullName} grep tjuven {thief.FullName}.");
                     }
                 }
-
 
                 //tjuv stjäl från medborgare
                 foreach (var other in people)
@@ -54,6 +58,8 @@ namespace TjuvOchPolis
                     {
                         // Tjuven stjäl från medborgaren        
                         Tjuv.RobsCitizen(thief2, (Citizen)person);
+                        newsFeed.Add($"Tjuven {thief2.FullName} stal från medborgaren {person.FullName}.");
+                        
 
 
                     }
@@ -64,17 +70,30 @@ namespace TjuvOchPolis
                     if (other is Police police && person is Citizen &&
                         other.X == person.X && other.Y == person.Y)
                     {
-                        PoliceMeetCitizen();
+                        
+                        
+                        newsFeed.Add($"Polisen {police.FullName} hälsar på medborgaren {person.FullName}.");
                     }
+
 
                 }
 
 
-
-
             }
+
+            for (int i = 0; i < newsFeed.Count; i++)
+            {
+                Console.SetCursorPosition(0, 40 + i);
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine(newsFeed[i].PadRight(100));
+            }
+
+
+            if (newsFeed.Count > 4)
+                newsFeed.RemoveAt(0);
+
             StatusUpdate(people);
-            Thread.Sleep(200);
+            Thread.Sleep(1000);
         }
 
 
@@ -82,16 +101,16 @@ namespace TjuvOchPolis
 
         private static void MoveInCity(Person person)
         {
-            if (person.X <= 1 || person.X >= 99)
-            {
-                person.Xdirection *= -1;
-            }
-            if (person.Y <= 1 || person.Y >= 23)
-            {
-                person.Ydirection *= -1;
-            }
             person.X += person.Xdirection;
             person.Y += person.Ydirection;
+
+
+            if (person.X < 1) person.X = 98;
+            else if (person.X > 98) person.X = 1;
+
+
+            if (person.Y < 1) person.Y = 23;
+            else if (person.Y > 23) person.Y = 1;
         }
         
 
@@ -126,10 +145,6 @@ namespace TjuvOchPolis
             Console.ResetColor();
         }
 
-        public static void PoliceMeetCitizen()
-        {
-            Console.SetCursorPosition(0, 42);
-          // Console.WriteLine("Polisen hälsar på medborgare");
-        }
+      
     }
 }
