@@ -25,8 +25,8 @@ namespace TjuvOchPolis
 
                 if (person is Thief caughtThief && caughtThief.IsCaught)
                 {
-                    Tjuv.HandleThiefRelease(caughtThief);
-                    Tjuv.MoveInPrison(caughtThief);
+                    Thiefs.HandleThiefRelease(caughtThief);
+                    Thiefs.MoveInPrison(caughtThief);
                 }
                 else
                 {
@@ -44,7 +44,7 @@ namespace TjuvOchPolis
                         person.X == other.X && person.Y == other.Y)
                     {
                         // Tjuven blir gripen
-                        Tjuv.CatchThief(thief);
+                        Thiefs.CatchThief(thief);
                         newsFeed.Add($"Polisen {person.FullName} grep tjuven {thief.FullName}.");
                     }
                 }
@@ -56,13 +56,8 @@ namespace TjuvOchPolis
                         person is Citizen &&
                         other.X == person.X && other.Y == person.Y)
                     {
-                           
-                        Tjuv.RobsCitizen(thief2, (Citizen)person, newsFeed);
-                        
-                        
-                        
 
-
+                        Thiefs.RobsCitizen(thief2, (Citizen)person, newsFeed);
                     }
                 }
 
@@ -94,7 +89,7 @@ namespace TjuvOchPolis
 
 
             StatusUpdate(people);
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
         }
 
 
