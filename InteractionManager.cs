@@ -56,9 +56,10 @@ namespace TjuvOchPolis
                         person is Citizen &&
                         other.X == person.X && other.Y == person.Y)
                     {
-                        // Tjuven stjäl från medborgaren        
-                        Tjuv.RobsCitizen(thief2, (Citizen)person);
-                        newsFeed.Add($"Tjuven {thief2.FullName} stal från medborgaren {person.FullName}.");
+                           
+                        Tjuv.RobsCitizen(thief2, (Citizen)person, newsFeed);
+                        
+                        
                         
 
 
@@ -81,16 +82,16 @@ namespace TjuvOchPolis
 
             }
 
+
             for (int i = 0; i < newsFeed.Count; i++)
             {
                 Console.SetCursorPosition(0, 40 + i);
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine(newsFeed[i].PadRight(100));
+                Console.WriteLine(newsFeed.Count + " " +newsFeed[i].PadRight(100));
             }
 
 
-            if (newsFeed.Count > 4)
-                newsFeed.RemoveAt(0);
+
 
             StatusUpdate(people);
             Thread.Sleep(1000);

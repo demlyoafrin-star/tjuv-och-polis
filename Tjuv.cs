@@ -74,7 +74,7 @@ namespace TjuvOchPolis
         }
 
 
-        public static void RobsCitizen(Thief thief, Citizen citizen)
+        public static void RobsCitizen(Thief thief, Citizen citizen, List<string> newsFeed)
         {
             if (citizen.Inventory.Count > 0)
             {
@@ -82,8 +82,13 @@ namespace TjuvOchPolis
                 var stolenItem = citizen.Inventory[itemIndex];
                 citizen.Inventory.RemoveAt(itemIndex);
                 thief.Inventory.Add(stolenItem);
-                
-                
+
+                Console.SetCursorPosition(0, 40);
+                string message = $"Tjuven {thief.FullName} stal {stolenItem} från medborgaren {citizen.FullName}.";
+                Console.WriteLine(message);
+
+                newsFeed.Add(message);
+
 
 
             }
