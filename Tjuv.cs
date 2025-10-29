@@ -67,7 +67,7 @@ namespace TjuvOchPolis
 
                 Console.SetCursorPosition(0, 29);
                 string message = $"Tjuven {thief.FullName} stal {stolenItem} från medborgaren {citizen.FullName}.";
-                Console.WriteLine(message);
+                
 
                 newsFeed.Add(message);
 

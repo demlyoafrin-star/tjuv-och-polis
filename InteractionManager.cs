@@ -82,21 +82,21 @@ namespace TjuvOchPolis
             // Rensa gamla rader
             for (int i = 0; i < maxVisibleNews; i++)
             {
-                Console.SetCursorPosition(0, 30 + i);
+                Console.SetCursorPosition(0, 29 + i);
                 Console.Write(new string(' ', 100));
             }
             // Skriv ut senaste nyheterna med global numrering
             for (int i = 0; i < visibleNews.Count; i++)
             {
                 int newsNumber = startIndex + i + 1; // Global numrering
-                Console.SetCursorPosition(0, 30 + i);
+                Console.SetCursorPosition(0, 29 + i);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"{newsNumber}. {visibleNews[i]}".PadRight(100));
             }
 
 
             StatusUpdate(people);
-            Thread.Sleep(200);
+            Thread.Sleep(1000);
         }
 
       

@@ -17,7 +17,7 @@ namespace TjuvOchPolis
 
         static void Main(string[] args)
         {
-            WindowSize.TryEnsureConsoleHeight(50);
+          // WindowSize.TryEnsureConsoleHeight(50);
 
 
 
