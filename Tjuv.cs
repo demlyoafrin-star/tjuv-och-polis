@@ -10,11 +10,11 @@ namespace TjuvOchPolis
     {
         public static void MoveInPrison(Person person)
         {
-            if (person.X <= 1 || person.X >= 14)
+            if (person.X <= 101 || person.X >= 111)
             {
                 person.Xdirection *= -1;
             }
-            if (person.Y <= 25 || person.Y >= 34)
+            if (person.Y <= 1 || person.Y >= 9)
             {
                 person.Ydirection *= -1;
             }
@@ -31,8 +31,8 @@ namespace TjuvOchPolis
             thief.ReleaseTime = DateTime.Now.AddSeconds(10 + (thief.Inventory.Count -1) * 10);
 
 
-            thief.X = Random.Shared.Next(2, 14); //fängelse gränser    //ändrade 1 till 2 för att inte skriva över vägg
-            thief.Y = Random.Shared.Next(26, 34); //fängelse gränser   //ändrade 25 till 26 för att inte skriva över vägg
+            thief.X = Random.Shared.Next(102, 109); //fängelse gränser    //ändrade 1 till 2 för att inte skriva över vägg
+            thief.Y = Random.Shared.Next(2, 9); //fängelse gränser   //ändrade 25 till 26 för att inte skriva över vägg
 
 
             // Console.Beep(500, 600);

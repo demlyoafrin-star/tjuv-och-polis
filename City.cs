@@ -37,11 +37,10 @@ namespace TjuvOchPolis
             
 
             //for prison
-            for (int i = 0; i < 10; i++)
+            for (int i = 1; i < 10; i++)
             {
-                Console.SetCursorPosition(0, 25 + i); 
-                Console.Write("X");
-                Console.SetCursorPosition(15, 25 + i);
+                
+                Console.SetCursorPosition(112, 0 + i);
                 Console.Write("X");
             }
 
@@ -69,7 +68,7 @@ namespace TjuvOchPolis
             Console.Write("# City");
 
            
-            Console.SetCursorPosition(0, 24);
+            Console.SetCursorPosition(101, 0);
             Console.Write("# prison");
             Console.SetCursorPosition(22, 27);
             Console.Write("Police station");
@@ -81,8 +80,14 @@ namespace TjuvOchPolis
             Console.SetCursorPosition(0, 39);
             Console.Write("# News Feed");
             Console.ResetColor();
-            Console.SetCursorPosition(6, 0);
+
+            //rest of all the corners
+            Console.SetCursorPosition(6, 0); //Rest of city
             Console.Write("==");
+            Console.SetCursorPosition(108, 0); // prison
+            Console.Write("=====");
+            Console.SetCursorPosition(101, 10); // prison
+            Console.Write("============");
         }
     }
 }
