@@ -45,6 +45,10 @@ namespace TjuvOchPolis
                         Tjuv.CatchThief(thief);
                         newsFeed.Add($"Polisen {person.FullName}grep tjuven{thief.FullName} " +
                         $"och ska var i fängelse inom {10 + (thief.Inventory.Count - 1) * 10} sekonder.");
+
+                        person.Inventory.AddRange(thief.Inventory);
+                        thief.Inventory.RemoveAll(thief.Inventory.Contains);
+                        //newsFeed.Add("I tjuvens inventory finns nu: " + string.Join(", ", thief.Inventory));  // för att visa vad tjuven hade på sig när han blev gripen
                     }
                 }
 
@@ -66,7 +70,7 @@ namespace TjuvOchPolis
                         other.X == person.X && other.Y == person.Y)
                     {
                         
-                        newsFeed.Add($"Polisen {police.FullName}hälsar på medborgaren{person.FullName}.");
+                        newsFeed.Add($"Polisen {police.FullName}hälsar på medborgaren {person.FullName}.");
                     }
                 }
             }
@@ -80,8 +84,9 @@ namespace TjuvOchPolis
             int startIndex = Math.Max(0, totalNews - maxVisibleNews);
             var visibleNews = newsFeed.Skip(startIndex).Take(maxVisibleNews).ToList();
             // Rensa gamla rader
-            for (int i = 0; i < maxVisibleNews; i++)
-            {
+            
+            for (int i= maxVisibleNews -1; i >=0; i--)
+                {
 
                 Console.SetCursorPosition(0, 29 + i);
                 Console.Write(new string(' ', 100));
@@ -97,7 +102,7 @@ namespace TjuvOchPolis
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(newsNumber + ".");
                 Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write($" {visibleNews[i]}".PadRight(100));
             }
 

@@ -23,7 +23,7 @@ namespace TjuvOchPolis
         //                                                           ("Jonas", " Skeppstedt"), ("Kristofer", "Sell"), ("Qudsia", "HAmid")};
     static void Main(string[] args)
         {
-          // WindowSize.TryEnsureConsoleHeight(50);
+          
 
 
 

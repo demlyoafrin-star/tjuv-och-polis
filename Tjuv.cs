@@ -26,17 +26,16 @@ namespace TjuvOchPolis
         {
 
             thief.IsCaught = true;
-            //thief.Inventory.Clear();
 
             thief.ReleaseTime = DateTime.Now.AddSeconds(10 + (thief.Inventory.Count -1) * 10);
 
 
             thief.X = Random.Shared.Next(102, 109); //fängelse gränser    //ändrade 1 till 2 för att inte skriva över vägg
             thief.Y = Random.Shared.Next(2, 9); //fängelse gränser   //ändrade 25 till 26 för att inte skriva över vägg
-
+            
 
             // Console.Beep(500, 600);
-           
+
 
         }
 
