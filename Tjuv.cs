@@ -32,11 +32,6 @@ namespace TjuvOchPolis
 
             thief.X = Random.Shared.Next(102, 109); //fängelse gränser    //ändrade 1 till 2 för att inte skriva över vägg
             thief.Y = Random.Shared.Next(2, 9); //fängelse gränser   //ändrade 25 till 26 för att inte skriva över vägg
-            
-
-            // Console.Beep(500, 600);
-
-
         }
 
         public static void HandleThiefRelease(Thief thief)
@@ -47,10 +42,6 @@ namespace TjuvOchPolis
                 thief.IsCaught = false;
                 thief.X = Random.Shared.Next(2, 99); //stadens gränser
                 thief.Y = Random.Shared.Next(2, 23); //stadens gränser
-
-
-              
-
             }
         }
 
@@ -66,11 +57,7 @@ namespace TjuvOchPolis
 
                 Console.SetCursorPosition(0, 29);
                 string message = $"Tjuven {thief.FullName}stal {stolenItem} från medborgaren {citizen.FullName}.";
-                
-
                 newsFeed.Add(message);
-
-
 
             }
         }

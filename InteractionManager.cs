@@ -84,9 +84,8 @@ namespace TjuvOchPolis
             int startIndex = Math.Max(0, totalNews - maxVisibleNews);
             var visibleNews = newsFeed.Skip(startIndex).Take(maxVisibleNews).ToList();
             // Rensa gamla rader
-            
-            for (int i= maxVisibleNews -1; i >=0; i--)
-                {
+            for (int i = 0; i < maxVisibleNews; i++)
+            {
 
                 Console.SetCursorPosition(0, 29 + i);
                 Console.Write(new string(' ', 100));
@@ -108,7 +107,7 @@ namespace TjuvOchPolis
 
 
             StatusUpdate(people);
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
         }
 
       
