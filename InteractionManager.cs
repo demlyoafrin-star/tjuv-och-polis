@@ -66,7 +66,6 @@ namespace TjuvOchPolis
                         other.X == person.X && other.Y == person.Y)
                     {
                         
-                        
                         newsFeed.Add($"Polisen {police.FullName}hälsar på medborgaren{person.FullName}.");
                     }
                 }
