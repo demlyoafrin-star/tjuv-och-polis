@@ -72,6 +72,7 @@ namespace TjuvOchPolis
             }
 
 
+
             // Hantera nyhetsflödet
 
             int maxVisibleNews = 5;
@@ -81,6 +82,7 @@ namespace TjuvOchPolis
             // Rensa gamla rader
             for (int i = 0; i < maxVisibleNews; i++)
             {
+
                 Console.SetCursorPosition(0, 29 + i);
                 Console.Write(new string(' ', 100));
             }
@@ -89,8 +91,14 @@ namespace TjuvOchPolis
             {
                 int newsNumber = startIndex + i + 1; // Global numrering
                 Console.SetCursorPosition(0, 29 + i);
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine($"{newsNumber}. {visibleNews[i]}".PadRight(100));
+                //Console.ForegroundColor = ConsoleColor.Blue;
+                //Console.WriteLine($"{newsNumber}. {visibleNews[i]}".PadRight(100));
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(newsNumber + ".");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($" {visibleNews[i]}".PadRight(100));
             }
 
 
@@ -99,10 +107,6 @@ namespace TjuvOchPolis
         }
 
       
-
-
-
-
 
         private static void MoveInCity(Person person)
         {
