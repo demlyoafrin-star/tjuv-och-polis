@@ -29,7 +29,7 @@ namespace TjuvOchPolis
             List<string> newsFeed = new List<string>();
 
 
-            for (int i = 0; i < 10; i++) // skapar poliser
+            for (int i = 0; i < 20; i++) // skapar poliser
             {
                 (string First, string Last) name = Names[(i + 10) % Names.Count];
                 people.Add(new Police(name.First, name.Last, Random.Shared.Next(2, 99), Random.Shared.Next(2, 23)));
