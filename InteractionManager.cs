@@ -34,8 +34,8 @@ namespace TjuvOchPolis
                 DrawPerson(person);
 
 
-                //polis griper tjuv
-                foreach (var other in people)
+                
+                foreach (var other in people) // polis griper tjuv
                 {
                     if (other is Thief thief && !thief.IsCaught &&
                         person is Police &&
@@ -43,12 +43,13 @@ namespace TjuvOchPolis
                     {
                         // Tjuven blir gripen
                         Tjuv.CatchThief(thief);
-                        newsFeed.Add($"Polisen {person.FullName} grep tjuven {thief.FullName}.");
+                        newsFeed.Add($"Polisen {person.FullName} grep tjuven {thief.FullName} " +
+                        $"och ska var i fängelse inom {10 + (thief.Inventory.Count - 1) * 10} sekonder.");
                     }
                 }
 
-                //tjuv stjäl från medborgare
-                foreach (var other in people)
+                
+                foreach (var other in people) //tjuv stjäl från medborgare
                 {
                     if (other is Thief thief2 && !thief2.IsCaught &&
                         person is Citizen &&
@@ -59,7 +60,7 @@ namespace TjuvOchPolis
                     }
                 }
 
-                foreach (var other in people)
+                foreach (var other in people) // polis hälsar på medborgare
                 {
                     if (other is Police police && person is Citizen &&
                         other.X == person.X && other.Y == person.Y)
@@ -71,7 +72,29 @@ namespace TjuvOchPolis
                 }
             }
 
-            
+
+            // Hantera nyhetsflödet
+
+            int maxVisibleNews = 5;
+            int totalNews = newsFeed.Count;
+            int startIndex = Math.Max(0, totalNews - maxVisibleNews);
+            var visibleNews = newsFeed.Skip(startIndex).Take(maxVisibleNews).ToList();
+            // Rensa gamla rader
+            for (int i = 0; i < maxVisibleNews; i++)
+            {
+                Console.SetCursorPosition(0, 40 + i);
+                Console.Write(new string(' ', 100));
+            }
+            // Skriv ut senaste nyheterna med global numrering
+            for (int i = 0; i < visibleNews.Count; i++)
+            {
+                int newsNumber = startIndex + i + 1; // Global numrering
+                Console.SetCursorPosition(0, 40 + i);
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"{newsNumber}. {visibleNews[i]}".PadRight(100));
+            }
+
+
             StatusUpdate(people);
             Thread.Sleep(500);
         }

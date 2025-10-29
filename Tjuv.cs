@@ -26,29 +26,9 @@ namespace TjuvOchPolis
         {
 
             thief.IsCaught = true;
-            //          thief.Inventory.Clear();
+            //thief.Inventory.Clear();
 
-            //            thief.ReleaseTime = DateTime.Now.AddSeconds(10 + (thief.Inventory.Count - 1) * 10);
-
-
-
-            if (thief.Inventory.Count == 2 || thief.Inventory.Count == 1)
-            {
-                thief.ReleaseTime = DateTime.Now.AddSeconds(10);
-            }
-            else if (thief.Inventory.Count == 3)
-            {
-                thief.ReleaseTime = DateTime.Now.AddSeconds(20);
-            }
-            else if (thief.Inventory.Count == 4)
-            {
-                thief.ReleaseTime = DateTime.Now.AddSeconds(30);
-            }
-            else if (thief.Inventory.Count >= 5)
-            {
-                thief.ReleaseTime = DateTime.Now.AddSeconds(40);
-            }
-
+            thief.ReleaseTime = DateTime.Now.AddSeconds(10 + (thief.Inventory.Count -1) * 10);
 
 
             thief.X = Random.Shared.Next(2, 14); //fängelse gränser    //ändrade 1 till 2 för att inte skriva över vägg
