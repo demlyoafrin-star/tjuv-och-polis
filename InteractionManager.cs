@@ -43,7 +43,7 @@ namespace TjuvOchPolis
                     {
                         // Tjuven blir gripen
                         Tjuv.CatchThief(thief);
-                        newsFeed.Add($"Polisen {person.FullName} grep tjuven {thief.FullName} " +
+                        newsFeed.Add($"Polisen {person.FullName}grep tjuven{thief.FullName} " +
                         $"och ska var i fängelse inom {10 + (thief.Inventory.Count - 1) * 10} sekonder.");
                     }
                 }
@@ -67,7 +67,7 @@ namespace TjuvOchPolis
                     {
                         
                         
-                        newsFeed.Add($"Polisen {police.FullName} hälsar på medborgaren {person.FullName}.");
+                        newsFeed.Add($"Polisen {police.FullName}hälsar på medborgaren{person.FullName}.");
                     }
                 }
             }

@@ -11,11 +11,17 @@ namespace TjuvOchPolis
 
         // Generat namn på personer i newsfeed
 
-        static List<(string First, string Last)> Names = new() {  ("Bakr", "Svensson"), ("Erik", "Johansson"), ("Sara", "Lindberg"),
-                                                                           ("Omar", "Ali"), ("Lisa", "Karlsson"), ("Jonas", "Berg"), ("Nora", "Ahmed"),
-                                                                           ("Leo", "Nilsson"), ("Ella", "Persson"), ("Hussein", "Mumin") };
+        static List<(string First, string Last)> Names = new() {  ("Bakr", ""), ("Erik", ""), ("Sara", ""),
+                                                                  ("Omar", ""), ("Lisa", ""), ("Jonas", ""), ("Nora", ""),
+                                                                  ("Leo", ""), ("Ella", "Persson"), ("Hussein", ""), ("Oliver", ""),
+                                                                   ("Jonas", ""), ("Kristofer", ""), ("Qudsia", "")};
 
-        static void Main(string[] args)
+
+        //("Bakr", "Svensson"), ("Erik", "Johansson"), ("Sara", "Lindberg"),
+        //                                                          ("Omar", "Ali"), ("Lisa", "Karlsson"), ("Jonas", "Berg"), ("Nora", "Ahmed"),
+        //                                                          ("Leo", "Nilsson"), ("Ella", "Persson"), ("Hussein", "Mumin"), ("Oliver", "Lindberg"),
+        //                                                           ("Jonas", " Skeppstedt"), ("Kristofer", "Sell"), ("Qudsia", "HAmid")};
+    static void Main(string[] args)
         {
           // WindowSize.TryEnsureConsoleHeight(50);
 
