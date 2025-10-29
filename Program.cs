@@ -17,14 +17,13 @@ namespace TjuvOchPolis
 
         static void Main(string[] args)
         {
-         
-
+            WindowSize.TryEnsureConsoleHeight(50);
 
 
 
             Console.CursorVisible = false;
             City.DrawCity();
-            
+
 
             List<Person> people = new List<Person>();
             List<string> newsFeed = new List<string>();
@@ -61,6 +60,8 @@ namespace TjuvOchPolis
             Console.ReadKey();
 
         }
+
+       
+        
     }
 }
-

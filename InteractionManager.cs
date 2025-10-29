@@ -9,12 +9,10 @@ namespace TjuvOchPolis
 {
     internal static class InteractionManager
     {
+        private static List<string> newsFeed = new List<string>();
 
         public static void HandleInteractions(List<Person> people)
         {
-            List<string> newsFeed = new List<string>();
-
-
 
             foreach (var person in people)
             {
@@ -68,29 +66,37 @@ namespace TjuvOchPolis
                     {
                         
                         
-                        newsFeed.Add($"Polisen {police.FullName} hälsar på medborgaren {person.FullName}.");
+                        AddNews($"Polisen {police.FullName} hälsar på medborgaren {person.FullName}.");
                     }
-
-
                 }
-
-
             }
 
-
-            for (int i = 0; i < newsFeed.Count; i++)
-            {
-                Console.SetCursorPosition(0, 40 + i);
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine(newsFeed.Count + " " +newsFeed[i].PadRight(100));
-            }
-
-
-
-
+            DrawNewsFeed();
             StatusUpdate(people);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
         }
+
+        private static void AddNews(string message)
+        {
+            newsFeed.Add(message);
+            if (newsFeed.Count > 4)
+                newsFeed.RemoveAt(0);
+        }
+
+        private static void DrawNewsFeed()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                Console.SetCursorPosition(0, 41 + i);
+                Console.ForegroundColor = ConsoleColor.Blue;
+
+                if (i < newsFeed.Count)
+                    Console.WriteLine(newsFeed[i].PadRight(100));
+                else
+                    Console.WriteLine("".PadRight(100)); // Töm raden
+            }
+        }
+
 
 
 
