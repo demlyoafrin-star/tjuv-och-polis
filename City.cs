@@ -16,14 +16,12 @@ namespace TjuvOchPolis
             {
                 Console.SetCursorPosition(i, 0); //det är för City
                 Console.Write("=");
-                Console.SetCursorPosition(i, 24); // Det är för City
+                Console.SetCursorPosition(i, 24); // Det är för City samt statusfältet
                 Console.Write("=");
 
-                Console.SetCursorPosition(i, 35); // Det är för statusfältet
+                Console.SetCursorPosition(i, 28); // Det är för news feed
                 Console.Write("=");
 
-                Console.SetCursorPosition(i, 39); // Det är för news feed
-                Console.Write("=");
             }
 
             //for city
@@ -46,16 +44,16 @@ namespace TjuvOchPolis
 
 
             // for polis station
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < 4; i++)
             {
-                Console.SetCursorPosition(35, 29 + i);
+                Console.SetCursorPosition(128, 4 + i);
                 Console.Write("X");
             }
-            for (int i = 16; i < 36; i++)
+            for (int i = 114; i < 129; i++)
             {
-                Console.SetCursorPosition(i, 28);
+                Console.SetCursorPosition(i, 4);
                 Console.Write("=");
-                Console.SetCursorPosition(i, 33);
+                Console.SetCursorPosition(i, 8);
                 Console.Write("=");
             }
 
@@ -70,14 +68,14 @@ namespace TjuvOchPolis
            
             Console.SetCursorPosition(101, 0);
             Console.Write("# prison");
-            Console.SetCursorPosition(22, 27);
+            Console.SetCursorPosition(114, 3);
             Console.Write("Police station");
             
 
 
-            Console.SetCursorPosition(0, 35);
+            Console.SetCursorPosition(0, 24);
             Console.Write("# Status");
-            Console.SetCursorPosition(0, 39);
+            Console.SetCursorPosition(0, 28);
             Console.Write("# News Feed");
             Console.ResetColor();
 

@@ -65,7 +65,7 @@ namespace TjuvOchPolis
                 citizen.Inventory.RemoveAt(itemIndex);
                 thief.Inventory.Add(stolenItem);
 
-                Console.SetCursorPosition(0, 40);
+                Console.SetCursorPosition(0, 29);
                 string message = $"Tjuven {thief.FullName} stal {stolenItem} från medborgaren {citizen.FullName}.";
                 Console.WriteLine(message);
 

@@ -82,21 +82,21 @@ namespace TjuvOchPolis
             // Rensa gamla rader
             for (int i = 0; i < maxVisibleNews; i++)
             {
-                Console.SetCursorPosition(0, 40 + i);
+                Console.SetCursorPosition(0, 30 + i);
                 Console.Write(new string(' ', 100));
             }
             // Skriv ut senaste nyheterna med global numrering
             for (int i = 0; i < visibleNews.Count; i++)
             {
                 int newsNumber = startIndex + i + 1; // Global numrering
-                Console.SetCursorPosition(0, 40 + i);
+                Console.SetCursorPosition(0, 30 + i);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"{newsNumber}. {visibleNews[i]}".PadRight(100));
             }
 
 
             StatusUpdate(people);
-            Thread.Sleep(500);
+            Thread.Sleep(200);
         }
 
       
@@ -143,7 +143,7 @@ namespace TjuvOchPolis
             int citizenCount = people.Count(p => p is Citizen);
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(0, 36);
+            Console.SetCursorPosition(0, 25);
             Console.WriteLine($"av {policeCount} poliser, är det nu {policeCount} kvar");
             Console.WriteLine($"Av {citizenCount} medporgare, är det nu {citizenCount} kvar");
             Console.WriteLine($"Av {totalThieves} tjuvar, är det nu {freeThieves} kvar och {caughtThieves} är i fängelse");
