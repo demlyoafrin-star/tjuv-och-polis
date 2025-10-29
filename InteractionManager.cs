@@ -47,8 +47,8 @@ namespace TjuvOchPolis
                         $"och ska var i fängelse inom {10 + (thief.Inventory.Count - 1) * 10} sekonder.");
 
                         person.Inventory.AddRange(thief.Inventory);
-                        thief.Inventory.RemoveAll(thief.Inventory.Contains);
-                        //newsFeed.Add("I tjuvens inventory finns nu: " + string.Join(", ", thief.Inventory));  // för att visa vad tjuven hade på sig när han blev gripen
+                        //thief.Inventory.RemoveAll(thief.Inventory.Contains);
+                        newsFeed.Add("I tjuvens inventory finns nu: " + string.Join(", ", thief.Inventory));  // för att visa vad tjuven hade på sig när han blev gripen
                     }
                 }
 
