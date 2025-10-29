@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
-    internal class Thiefs
+    internal class Tjuv
     {
         public static void MoveInPrison(Person person)
         {
@@ -26,7 +26,11 @@ namespace TjuvOchPolis
         {
 
             thief.IsCaught = true;
-            thief.Inventory.Clear();
+            //          thief.Inventory.Clear();
+
+            //            thief.ReleaseTime = DateTime.Now.AddSeconds(10 + (thief.Inventory.Count - 1) * 10);
+
+
 
             if (thief.Inventory.Count == 2 || thief.Inventory.Count == 1)
             {
@@ -44,7 +48,7 @@ namespace TjuvOchPolis
             {
                 thief.ReleaseTime = DateTime.Now.AddSeconds(40);
             }
-          
+
 
 
             thief.X = Random.Shared.Next(2, 14); //fängelse gränser    //ändrade 1 till 2 för att inte skriva över vägg

@@ -35,7 +35,7 @@ namespace TjuvOchPolis
                 people.Add(new Police(name.First, name.Last, Random.Shared.Next(2, 99), Random.Shared.Next(2, 23)));
             }
 
-            for (int i = 0; i < 20; i++) // skapar tjubar
+            for (int i = 0; i < 20; i++) // skapar tjuvar
             {
 
                 (string First, string Last) name = Names[(i + 20) % Names.Count];
