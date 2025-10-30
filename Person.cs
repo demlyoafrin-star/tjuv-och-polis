@@ -42,14 +42,15 @@ namespace TjuvOchPolis
     }
     public class Citizen : Person // subklass för medborgare
     {
+        public bool IsRobbed { get; set; }
         public override string Symbol => "M"; // Medborgare visas som M
-        public Citizen(string firstName, string lastName, int x, int y) : base(firstName, lastName, x, y)
+        public Citizen(string firstName, string lastName, int x, int y, bool isRobbed) : base(firstName, lastName, x, y)
         {
             Inventory.Add("Keys");
             Inventory.Add("Mobile");
             Inventory.Add("Wallet");
             Inventory.Add("Watch");
-
+            IsRobbed = isRobbed;
         }
     }
 

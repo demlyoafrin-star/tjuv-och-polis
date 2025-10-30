@@ -43,12 +43,15 @@ namespace TjuvOchPolis
                     {
                         // Tjuven blir gripen
                         Tjuv.CatchThief(thief);
+
                         newsFeed.Add($"Polisen {person.FullName}grep tjuven{thief.FullName} " +
                         $"och ska var i fängelse inom {10 + (thief.Inventory.Count - 1) * 10} sekonder.");
 
                         person.Inventory.AddRange(thief.Inventory);
-                        //thief.Inventory.RemoveAll(thief.Inventory.Contains);
-                        newsFeed.Add("I tjuvens inventory finns nu: " + string.Join(", ", thief.Inventory));  // för att visa vad tjuven hade på sig när han blev gripen
+                        thief.Inventory.RemoveAll(thief.Inventory.Contains);
+
+                                       //för att visa vad tjuven hade på sig när han blev gripen
+                        // newsFeed.Add("I tjuvens inventory finns nu: " + string.Join(", ", thief.Inventory));
                     }
                 }
 
@@ -107,7 +110,7 @@ namespace TjuvOchPolis
 
 
             StatusUpdate(people);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
         }
 
       
@@ -146,13 +149,17 @@ namespace TjuvOchPolis
             int totalThieves = people.Count(p => p is Thief);
             int caughtThieves = people.Count(p => p is Thief t && t.IsCaught);
             int freeThieves = totalThieves - caughtThieves;
-            int policeCount = people.Count(p => p is Police);
+
             int citizenCount = people.Count(p => p is Citizen);
+            int robbedCitizens = people.Count(p => p is Citizen c && c.IsRobbed);
+
+            int policeCount = people.Count(p => p is Police);
+
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(0, 25);
             Console.WriteLine($"av {policeCount} poliser, är det nu {policeCount} kvar");
-            Console.WriteLine($"Av {citizenCount} medporgare, är det nu {citizenCount} kvar");
+            Console.WriteLine($"Av {citizenCount} medporgare, är det nu {robbedCitizens} som har blivit rånade ");
             Console.WriteLine($"Av {totalThieves} tjuvar, är det nu {freeThieves} kvar och {caughtThieves} är i fängelse");
 
             Console.ResetColor();
