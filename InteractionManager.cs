@@ -50,8 +50,10 @@ namespace TjuvOchPolis
                         person.Inventory.AddRange(thief.Inventory);
                         thief.Inventory.RemoveAll(thief.Inventory.Contains);
 
-                                       //för att visa vad tjuven hade på sig när han blev gripen
+                        //för att visa vad tjuven hade på sig när han blev gripen
                         // newsFeed.Add("I tjuvens inventory finns nu: " + string.Join(", ", thief.Inventory));
+
+
                     }
                 }
 
@@ -98,8 +100,6 @@ namespace TjuvOchPolis
             {
                 int newsNumber = startIndex + i + 1; // Global numrering
                 Console.SetCursorPosition(0, 29 + i);
-                //Console.ForegroundColor = ConsoleColor.Blue;
-                //Console.WriteLine($"{newsNumber}. {visibleNews[i]}".PadRight(100));
 
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(newsNumber + ".");
@@ -108,9 +108,9 @@ namespace TjuvOchPolis
                 Console.Write($" {visibleNews[i]}".PadRight(100));
             }
 
-
+            
             StatusUpdate(people);
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
         }
 
       
@@ -158,9 +158,31 @@ namespace TjuvOchPolis
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(0, 25);
-            Console.WriteLine($"av {policeCount} poliser, är det nu {policeCount} kvar");
-            Console.WriteLine($"Av {citizenCount} medporgare, är det nu {robbedCitizens} som har blivit rånade ");
-            Console.WriteLine($"Av {totalThieves} tjuvar, är det nu {freeThieves} kvar och {caughtThieves} är i fängelse");
+
+
+            // poliser
+            Console.Write("Av ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;Console.Write(policeCount);
+            Console.ForegroundColor = ConsoleColor.White; Console.Write(" poliser, är det nu lika många kvar \n");
+
+
+            // medborgare
+            Console.Write("Av ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;Console.Write(citizenCount);
+            Console.ForegroundColor = ConsoleColor.White;Console.Write(" medborgare, är det nu ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;  Console.Write(robbedCitizens);
+            Console.ForegroundColor = ConsoleColor.White;  Console.Write(" som har blivit rånade \n");
+
+
+
+            // tjuvar
+            Console.Write("Av ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow; Console.Write(totalThieves);
+            Console.ForegroundColor = ConsoleColor.White; Console.Write(" tjuvar, är det nu ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow; Console.Write(freeThieves);
+            Console.ForegroundColor = ConsoleColor.White;  Console.Write(" kvar och ");
+            Console.ForegroundColor = ConsoleColor.DarkYellow; Console.Write(caughtThieves);
+            Console.ForegroundColor = ConsoleColor.White; Console.WriteLine(" är i fängelse ");
 
             Console.ResetColor();
         }
