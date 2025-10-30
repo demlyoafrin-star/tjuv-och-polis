@@ -55,6 +55,21 @@ namespace TjuvOchPolis
 
 
                     }
+
+                    // 💡 Polisen lämnar tillbaka föremålen till medborgarna
+                    foreach (var citizen in people.OfType<Citizen>())
+                    {
+                        if (citizen.IsRobbed) // endast rånade medborgare får tillbaka
+                        {
+                            citizen.Inventory.AddRange(person.Inventory);
+                            citizen.IsRobbed = false;
+                        }
+                    }
+                    person.Inventory.Clear(); // töm polisens inventory efter att ha lämnat tillbaka föremålen
+
+
+
+
                 }
 
                 

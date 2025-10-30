@@ -46,9 +46,9 @@ namespace TjuvOchPolis
         public override string Symbol => "M"; // Medborgare visas som M
         public Citizen(string firstName, string lastName, int x, int y, bool isRobbed) : base(firstName, lastName, x, y)
         {
-            Inventory.Add("Keys");
-            Inventory.Add("Mobile");
-            Inventory.Add("Wallet");
+            //Inventory.Add("Keys");
+            //Inventory.Add("Mobile");
+            //Inventory.Add("Wallet");
             Inventory.Add("Watch");
             IsRobbed = isRobbed;
         }
