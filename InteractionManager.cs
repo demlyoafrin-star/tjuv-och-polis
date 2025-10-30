@@ -53,21 +53,10 @@ namespace TjuvOchPolis
                         //för att visa vad tjuven hade på sig när han blev gripen
                         // newsFeed.Add("I tjuvens inventory finns nu: " + string.Join(", ", thief.Inventory));
 
-
+                        Console.Beep(600, 400);
                     }
 
-                    // 💡 Polisen lämnar tillbaka föremålen till medborgarna
-                    foreach (var citizen in people.OfType<Citizen>())
-                    {
-                        if (citizen.IsRobbed) // endast rånade medborgare får tillbaka
-                        {
-                            citizen.Inventory.AddRange(person.Inventory);
-                            citizen.IsRobbed = false;
-                        }
-                    }
-                    person.Inventory.Clear(); // töm polisens inventory efter att ha lämnat tillbaka föremålen
-
-
+                   
 
 
                 }
