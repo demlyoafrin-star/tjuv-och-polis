@@ -18,21 +18,19 @@ namespace TjuvOchPolis
                 Console.SetCursorPosition(i, 24); Console.Write("="); // Det är för City samt statusfältet
                 Console.SetCursorPosition(i, 28); Console.Write("="); // Det är för news feed
             }
-
             //for city
             for (int i = 1; i < 24; i++)
             {
                 Console.SetCursorPosition(0, i);  Console.Write("X");
                 Console.SetCursorPosition(100, i); Console.Write("X");
             }
-            
+
 
             //for prison
             for (int i = 1; i < 10; i++)
             {
                 Console.SetCursorPosition(112, 0 + i);Console.Write("X");
             }
-
 
 
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -45,6 +43,7 @@ namespace TjuvOchPolis
 
             //rest of all the corners
             Console.SetCursorPosition(6, 0);Console.Write("=="); //Rest of city
+
             Console.SetCursorPosition(109, 0); Console.Write("===="); // prison
             Console.SetCursorPosition(101, 10);  Console.Write("============"); // prison
         }

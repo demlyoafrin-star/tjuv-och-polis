@@ -9,10 +9,11 @@ namespace TjuvOchPolis
     internal class Program
     {
 
-        static List<(string First, string Last)> Names = new() {  ("Bakr", ""), ("Erik", ""), ("Sara", ""),
-                                                                  ("Omar", ""), ("Lisa", ""), ("Jonas", ""), ("Nora", ""),
-                                                                  ("Leo", ""), ("Ella", "Persson"), ("Hussein", ""), ("Oliver", ""),
-                                                                   ("Jonas", ""), ("Kristofer", ""), ("Qudsia", "")};
+        static List<(string First, string Last)> Names = new() 
+        {  ("Bakr", ""), ("Erik", ""), ("Sara", ""),
+           ("Omar", ""), ("Lisa", ""), ("Jonas", ""), ("Nora", ""),
+           ("Leo", ""), ("Ella", "Persson"), ("Hussein", ""), ("Oliver", ""),
+           ("Jonas", ""), ("Kristofer", ""), ("Qudsia", "")};
 
 
     static void Main(string[] args)

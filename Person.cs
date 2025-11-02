@@ -14,8 +14,6 @@ namespace TjuvOchPolis
         public string LastName { get; set; }
         public string FullName => $"{FirstName} {LastName}"; // Fullständigt namn
         public virtual string Symbol => "?";            // Bokstav som visas i staden
-
-
         public int X { get; set; }
         public int Y { get; set; }
         public List<string> Inventory { get; set; }

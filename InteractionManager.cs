@@ -45,7 +45,7 @@ namespace TjuvOchPolis
                         Tjuv.CatchThief(thief);
 
                         newsFeed.Add($"Polisen {person.FullName}grep tjuven{thief.FullName} " +
-                        $"och ska var i fängelse inom {10 + (thief.Inventory.Count - 1) * 10} sekonder.");
+                        $"och ska var i fängelse inom {10 + (thief.Inventory.Count - 1) * 10} sekonder");
 
                         person.Inventory.AddRange(thief.Inventory);
                         thief.Inventory.RemoveAll(thief.Inventory.Contains);
@@ -79,7 +79,7 @@ namespace TjuvOchPolis
                         other.X == person.X && other.Y == person.Y)
                     {
                         
-                        newsFeed.Add($"Polisen {police.FullName}hälsar på medborgaren {person.FullName}.");
+                        newsFeed.Add($"Polisen {police.FullName}hälsar på medborgaren {person.FullName}");
                     }
                 }
             }
@@ -108,7 +108,7 @@ namespace TjuvOchPolis
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(newsNumber + ".");
                 Console.ResetColor();
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write($" {visibleNews[i]}".PadRight(100));
             }
 
