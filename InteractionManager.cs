@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Xml;
 
 namespace TjuvOchPolis
@@ -13,6 +13,12 @@ namespace TjuvOchPolis
 
         public static void HandleInteractions(List<Person> people)
         {
+            // Viktigt: sätta UTF8 så konsolen kan visa emojis/Unicode.
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
+
+
+
 
             foreach (var person in people)
             {
@@ -45,21 +51,20 @@ namespace TjuvOchPolis
                         Tjuv.CatchThief(thief);
 
                         newsFeed.Add($"Polisen {person.FullName}grep tjuven{thief.FullName} " +
-                        $"och ska var i fängelse inom {10 + (thief.Inventory.Count - 1) * 10} sekonder");
+                        $"och ska var i fängelse inom {10 + (thief.Inventory.Count - 1) * 10} sekonder  🚨");
 
                         person.Inventory.AddRange(thief.Inventory);
                         thief.Inventory.RemoveAll(thief.Inventory.Contains);
 
                         //för att visa vad tjuven hade på sig när han blev gripen
-                        // newsFeed.Add("I tjuvens inventory finns nu: " + string.Join(", ", thief.Inventory));
+                       // newsFeed.Add("Polisen hittade / " + string.Join(", ", person.Inventory) + " / hos tjuven");
 
                         Console.Beep(600, 400);
+
                     }
-
-                   
-
-
                 }
+
+
 
                 
                 foreach (var other in people) //tjuv stjäl från medborgare
@@ -71,6 +76,7 @@ namespace TjuvOchPolis
 
                         Tjuv.RobsCitizen(thief2, (Citizen)person, newsFeed);
                     }
+
                 }
 
                 foreach (var other in people) // polis hälsar på medborgare
@@ -78,20 +84,20 @@ namespace TjuvOchPolis
                     if (other is Police police && person is Citizen &&
                         other.X == person.X && other.Y == person.Y)
                     {
-                        
-                        newsFeed.Add($"Polisen {police.FullName}hälsar på medborgaren {person.FullName}");
+                        newsFeed.Add($"Polisen {police.FullName}hälsar på medborgaren {person.FullName}  👋 ");
                     }
+                    
                 }
             }
 
 
 
-            // Hantera nyhetsflödet
-
+            // Hantera news feed
             int maxVisibleNews = 5;
             int totalNews = newsFeed.Count;
             int startIndex = Math.Max(0, totalNews - maxVisibleNews);
             var visibleNews = newsFeed.Skip(startIndex).Take(maxVisibleNews).ToList();
+
             // Rensa gamla rader
             for (int i = 0; i < maxVisibleNews; i++)
             {
@@ -112,12 +118,10 @@ namespace TjuvOchPolis
                 Console.Write($" {visibleNews[i]}".PadRight(100));
             }
 
-            
             StatusUpdate(people);
-            Thread.Sleep(500);
+            Thread.Sleep(700);
         }
 
-      
 
         private static void MoveInCity(Person person)
         {
@@ -147,6 +151,11 @@ namespace TjuvOchPolis
             };
             Console.Write(person.Symbol);
         }
+
+
+
+
+
 
         private static void StatusUpdate(List<Person> people)
         {

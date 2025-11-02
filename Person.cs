@@ -38,19 +38,31 @@ namespace TjuvOchPolis
 
         }
     }
+
+
+
+
     public class Citizen : Person // subklass för medborgare
     {
         public bool IsRobbed { get; set; }
         public override string Symbol => "M"; // Medborgare visas som M
         public Citizen(string firstName, string lastName, int x, int y, bool isRobbed) : base(firstName, lastName, x, y)
         {
-            Inventory.Add("Keys");
-            Inventory.Add("Mobile");
-            Inventory.Add("Wallet");
-            Inventory.Add("Watch");
+            Inventory.Add("Nycklar ");
+            Inventory.Add("Mobil ");
+            Inventory.Add("Plånbok ");
+            Inventory.Add("Klocka ");
+
+            //Inventory.Add("Nycklar 🔑");
+            //Inventory.Add("Mobil 📱");
+            //Inventory.Add("Plånbok 👛");
+            //Inventory.Add("Klocka 🕒");
             IsRobbed = isRobbed;
         }
     }
+
+
+
 
     public class Thief : Person // subklass för tjuv
     {
@@ -61,19 +73,22 @@ namespace TjuvOchPolis
         public override string Symbol => "T"; // Tjuv visas som T
         public Thief( string firstName, string lastName, int x, int y, bool isCaught) : base(firstName, lastName, x, y)
         {
-            Inventory.Add("Knife");
+            Inventory.Add("Kniv");
             IsCaught = isCaught;
 
         }
     }
+
+
+
 
     public class Police : Person // subklass för polis
     {
         public override string Symbol => "P"; // Polis visas som P
         public Police(string firstName, string lastName, int x, int y) : base(firstName, lastName, x, y)
         {
-            Inventory.Add("Handcuffs");
-            Inventory.Add("Weapon");
+           // Inventory.Add("Handbojor");
+           // Inventory.Add("vapen");
 
         }
     }
