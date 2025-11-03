@@ -16,15 +16,13 @@ namespace TjuvOchPolis
            ("Jonas", ""), ("Kristofer", ""), ("Qudsia", "")};
 
 
-    static void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.CursorVisible = false;
             City.DrawCity();
 
 
             List<Person> people = new List<Person>();
-            List<string> newsFeed = new List<string>();
-
 
             for (int i = 0; i < 15; i++) // skapar poliser
             {

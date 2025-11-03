@@ -17,6 +17,8 @@ namespace TjuvOchPolis
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
 
+            File.WriteAllLines("newsFeedLog.txt", newsFeed);
+
 
 
 
@@ -50,17 +52,16 @@ namespace TjuvOchPolis
                         // Tjuven blir gripen
                         Tjuv.CatchThief(thief);
 
-                        newsFeed.Add($"Polisen {person.FullName}grep tjuven{thief.FullName} " +
+                        newsFeed.Add($"Polisen {person.FullName}grep tjuven {thief.FullName} " +
                         $"och ska var i fängelse inom {10 + (thief.Inventory.Count - 1) * 10} sekonder  🚨");
 
                         person.Inventory.AddRange(thief.Inventory);
                         thief.Inventory.RemoveAll(thief.Inventory.Contains);
 
                         //för att visa vad tjuven hade på sig när han blev gripen
-                       // newsFeed.Add("Polisen hittade / " + string.Join(", ", person.Inventory) + " / hos tjuven");
+                        //newsFeed.Add("Polisen hittade / " + string.Join(", ", person.Inventory) + " / hos tjuven");
 
                         Console.Beep(600, 400);
-
                     }
                 }
 
@@ -91,7 +92,6 @@ namespace TjuvOchPolis
             }
 
 
-
             // Hantera news feed
             int maxVisibleNews = 5;
             int totalNews = newsFeed.Count;
@@ -119,13 +119,13 @@ namespace TjuvOchPolis
             }
 
             StatusUpdate(people);
-            Thread.Sleep(700);
+            Thread.Sleep(1000);
         }
 
 
         private static void MoveInCity(Person person)
         {
-            person.X += person.Xdirection;
+            person.X += person.Xdirection; 
             person.Y += person.Ydirection;
 
 
@@ -141,6 +141,7 @@ namespace TjuvOchPolis
 
         private static void DrawPerson(Person person)
         {
+            // Rita personen på dess nya position
             Console.SetCursorPosition(person.X, person.Y);
             Console.ForegroundColor = person switch
             {
@@ -159,6 +160,7 @@ namespace TjuvOchPolis
 
         private static void StatusUpdate(List<Person> people)
         {
+            // Räkna tjuvar, medborgare och poliser
             int totalThieves = people.Count(p => p is Thief);
             int caughtThieves = people.Count(p => p is Thief t && t.IsCaught);
             int freeThieves = totalThieves - caughtThieves;
@@ -174,7 +176,7 @@ namespace TjuvOchPolis
 
 
             // poliser
-            Console.Write("Av ");
+            Console.Write("av");
             Console.ForegroundColor = ConsoleColor.DarkYellow;Console.Write(policeCount);
             Console.ForegroundColor = ConsoleColor.White; Console.Write(" poliser, är det nu lika många kvar \n");
 

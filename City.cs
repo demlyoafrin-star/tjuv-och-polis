@@ -42,8 +42,7 @@ namespace TjuvOchPolis
             Console.ResetColor();
 
             //rest of all the corners
-            Console.SetCursorPosition(6, 0);Console.Write("=="); //Rest of city
-
+            Console.SetCursorPosition(6, 0); Console.Write("=="); //Rest of city
             Console.SetCursorPosition(109, 0); Console.Write("===="); // prison
             Console.SetCursorPosition(101, 10);  Console.Write("============"); // prison
         }
