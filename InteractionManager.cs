@@ -17,7 +17,10 @@ namespace TjuvOchPolis
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
 
-            File.WriteAllLines("newsFeedLog.txt", newsFeed);
+
+            File.WriteAllLines("newsFeed.txt",
+            newsFeed.Select((line, index) => $"{index + 1}. {line}"));
+
 
 
 
