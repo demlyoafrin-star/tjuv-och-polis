@@ -15,7 +15,7 @@ namespace TjuvOchPolis
         {
             // Viktigt: sätta UTF8 så konsolen kan visa emojis/Unicode.
             Console.OutputEncoding = Encoding.UTF8;
-            //Console.InputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
 
 
             File.WriteAllLines("newsFeed.txt",
@@ -108,9 +108,7 @@ namespace TjuvOchPolis
                 Console.SetCursorPosition(0, 29 + i);
                 Console.Write(new string(' ', 100));
             }
-            // Skriv ut senaste nyheterna med global numrering
 
-            // Skriv ut senaste nyheterna i omvänd ordning (nyaste överst)
             for (int i = 0; i < visibleNews.Count; i++)
             {
                 // räkna bakifrån
@@ -135,7 +133,7 @@ namespace TjuvOchPolis
 
         private static void MoveInCity(Person person)
         {
-            person.X += person.Xdirection; 
+            person.X += person.Xdirection;
             person.Y += person.Ydirection;
 
 
@@ -190,15 +188,12 @@ namespace TjuvOchPolis
             Console.ForegroundColor = ConsoleColor.DarkYellow;Console.Write(policeCount);
             Console.ForegroundColor = ConsoleColor.White; Console.Write(" poliser, är det nu lika många kvar \n");
 
-
             // medborgare
             Console.Write("Av ");
             Console.ForegroundColor = ConsoleColor.DarkYellow;Console.Write(citizenCount);
             Console.ForegroundColor = ConsoleColor.White;Console.Write(" medborgare, är det nu ");
             Console.ForegroundColor = ConsoleColor.DarkYellow;  Console.Write(robbedCitizens);
             Console.ForegroundColor = ConsoleColor.White;  Console.Write(" som har blivit rånade \n");
-
-
 
             // tjuvar
             Console.Write("Av ");
