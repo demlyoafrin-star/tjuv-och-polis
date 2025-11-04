@@ -15,7 +15,7 @@ namespace TjuvOchPolis
         {
             // Viktigt: sätta UTF8 så konsolen kan visa emojis/Unicode.
             Console.OutputEncoding = Encoding.UTF8;
-            Console.InputEncoding = Encoding.UTF8;
+            //Console.InputEncoding = Encoding.UTF8;
 
 
             File.WriteAllLines("newsFeed.txt",
@@ -109,17 +109,24 @@ namespace TjuvOchPolis
                 Console.Write(new string(' ', 100));
             }
             // Skriv ut senaste nyheterna med global numrering
+
+            // Skriv ut senaste nyheterna i omvänd ordning (nyaste överst)
             for (int i = 0; i < visibleNews.Count; i++)
             {
-                int newsNumber = startIndex + i + 1; // Global numrering
+                // räkna bakifrån
+                int reversedIndex = visibleNews.Count - 1 - i; // Index för att få nyaste först
+                int newsNumber = totalNews - i; 
+
+                // skriv högst upp, sedan nedåt
                 Console.SetCursorPosition(0, 29 + i);
 
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(newsNumber + ".");
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.Write($" {visibleNews[i]}".PadRight(100));
+                Console.Write($" {visibleNews[reversedIndex]}".PadRight(100));
             }
+
 
             StatusUpdate(people);
             Thread.Sleep(1000);
