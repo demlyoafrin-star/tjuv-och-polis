@@ -64,7 +64,7 @@ namespace TjuvOchPolis
                         //för att visa vad tjuven hade på sig när han blev gripen
                         //newsFeed.Add("Polisen hittade / " + string.Join(", ", person.Inventory) + " / hos tjuven");
 
-                        Console.Beep(600, 400);
+                        //Console.Beep(600, 400);
                     }
                 }
 
